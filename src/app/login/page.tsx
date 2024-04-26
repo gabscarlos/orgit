@@ -33,33 +33,40 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const cadastroDataString = localStorage.getItem("cadastroData");
-
-    if (cadastroDataString) {
-      const cadastroData: User[] = JSON.parse(cadastroDataString);
-
-      // Procurar pelo usuário com o email correspondente
-      const usuario = cadastroData.find((user) => user.email === email);
-
-      if (usuario && usuario.senha === senha) {
-        // Armazenar apenas as informações relevantes do usuário logado no localStorage
-        localStorage.setItem("usuarioLogado", JSON.stringify({
-          email: usuario.email,
-          nome: nomeUsuario 
-        }));
-
-        // Passar as informações do usuário para a página inicial
-        router.push(`/home?email=${encodeURIComponent(usuario.email)}`);
+  
+    if (typeof window !== 'undefined') {
+      const cadastroDataString = localStorage.getItem("cadastroData");
+  
+      if (cadastroDataString) {
+        const cadastroData: User[] = JSON.parse(cadastroDataString);
+  
+        // Procurar pelo usuário com o email correspondente
+        const usuario = cadastroData.find((user) => user.email === email);
+  
+        if (usuario && usuario.senha === senha) {
+          // Armazenar apenas as informações relevantes do usuário logado no localStorage
+          localStorage.setItem("usuarioLogado", JSON.stringify({
+            email: usuario.email,
+            nome: nomeUsuario // Aqui você pode usar o nome de usuário fornecido no campo de entrada
+          }));
+  
+          // Passar as informações do usuário para a página inicial
+          router.push(`/home?email=${encodeURIComponent(usuario.email)}`);
+        } else {
+          setErro("Email ou senha incorretos. Por favor, tente novamente.");
+        }
       } else {
-        setErro("Email ou senha incorretos. Por favor, tente novamente.");
+        setErro(
+          "Nenhum cadastro encontrado. Por favor, registre-se antes de fazer login."
+        );
       }
     } else {
-      setErro(
-        "Nenhum cadastro encontrado. Por favor, registre-se antes de fazer login."
-      );
+      // Se o código estiver sendo executado em um ambiente onde localStorage não está disponível
+      // Você pode lidar com isso aqui, por exemplo, exibindo uma mensagem de erro ou redirecionando para uma página de erro.
+      console.error("localStorage is not available");
     }
   };
+  
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen gap-4">
