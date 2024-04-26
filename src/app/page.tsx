@@ -34,46 +34,53 @@ export default function Cadastro() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   
-    if (!validarEmail(formData.email)) {
-      setIsEmailValido(false);
-      return;
+    if (typeof window !== 'undefined') {
+      if (!validarEmail(formData.email)) {
+        setIsEmailValido(false);
+        return;
+      } else {
+        setIsEmailValido(true);
+      }
+  
+      if (formData.senha !== formData.confirmaSenha) {
+        alert("As senhas não conferem");
+        return;
+      }
+  
+      // Verificar se já existem dados cadastrados
+      const cadastroDataString = localStorage.getItem("cadastroData");
+      const cadastroData: FormData[] = cadastroDataString ? JSON.parse(cadastroDataString) : [];
+  
+      // Verificar se o email já está cadastrado
+      const emailJaCadastrado = Array.isArray(cadastroData) && cadastroData.some(
+        (user) => user.email === formData.email
+      );
+      if (emailJaCadastrado) {
+        setErro("Este email já está cadastrado. Por favor, utilize outro.");
+        return;
+      }
+  
+      // Adicionar novo usuário à lista de cadastros
+      cadastroData.push(formData);
+  
+      // Salvar lista atualizada no localStorage
+      localStorage.setItem("cadastroData", JSON.stringify(cadastroData));
+  
+      router.push("/login");
+  
+      setFormData({
+        nome: "",
+        email: "",
+        senha: "",
+        confirmaSenha: "",
+      });
     } else {
-      setIsEmailValido(true);
+      // Se o código estiver sendo executado em um ambiente onde localStorage não está disponível
+      // Você pode lidar com isso aqui, por exemplo, exibindo uma mensagem de erro ou redirecionando para uma página de erro.
+      console.error("localStorage is not available");
     }
-  
-    if (formData.senha !== formData.confirmaSenha) {
-      alert("As senhas não conferem");
-      return;
-    }
-  
-    // Verificar se já existem dados cadastrados
-    const cadastroDataString = localStorage.getItem("cadastroData");
-    const cadastroData: FormData[] = cadastroDataString ? JSON.parse(cadastroDataString) : [];
-  
-    // Verificar se o email já está cadastrado
-    const emailJaCadastrado = Array.isArray(cadastroData) && cadastroData.some(
-      (user) => user.email === formData.email
-    );
-    if (emailJaCadastrado) {
-      setErro("Este email já está cadastrado. Por favor, utilize outro.");
-      return;
-    }
-  
-    // Adicionar novo usuário à lista de cadastros
-    cadastroData.push(formData);
-  
-    // Salvar lista atualizada no localStorage
-    localStorage.setItem("cadastroData", JSON.stringify(cadastroData));
-  
-    router.push("/login");
-  
-    setFormData({
-      nome: "",
-      email: "",
-      senha: "",
-      confirmaSenha: "",
-    });
   };
+  
 
   function validarEmail(email: string): boolean {
     const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
