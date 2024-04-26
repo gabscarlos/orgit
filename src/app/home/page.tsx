@@ -5,7 +5,7 @@ import SorteDoDia from "@/components/SorteDoDia";
 import UserRepositories from "@/components/UserRepositories";
 import axios from "axios";
 import Image from "next/image";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Repository {
   id: number;

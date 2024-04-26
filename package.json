@@ -1,6 +1,7 @@
 {
   "name": "orgit",
   "version": "0.1.0",
+  "homepage": "https://gabscarlos.github.io/orgit",
   "private": true,
   "scripts": {
     "dev": "next dev",

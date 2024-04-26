@@ -12,11 +12,7 @@ interface User {
   nome: string;
 }
 
-interface LoginProps {
-  onLoginSuccess: () => void;
-}
-
-export default function Login(props: LoginProps) {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [nomeUsuario, setNomeUsuario] = useState("");
@@ -50,7 +46,7 @@ export default function Login(props: LoginProps) {
         // Armazenar apenas as informações relevantes do usuário logado no localStorage
         localStorage.setItem("usuarioLogado", JSON.stringify({
           email: usuario.email,
-          nome: nomeUsuario // Aqui você pode usar o nome de usuário fornecido no campo de entrada
+          nome: nomeUsuario 
         }));
 
         // Passar as informações do usuário para a página inicial
@@ -114,5 +110,3 @@ export default function Login(props: LoginProps) {
     </main>
   );
 }
-
-
