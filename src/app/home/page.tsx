@@ -20,7 +20,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const userDataString = localStorage.getItem("usuarioLogado");
+  const userDataString = typeof localStorage !== 'undefined' ? localStorage.getItem("usuarioLogado") : null;
   const userData = userDataString ? JSON.parse(userDataString) : null;
   const username = userData ? userData.nome : "";
   const userEmail = userData ? userData.email : "";
@@ -39,8 +39,15 @@ export default function Home() {
           }
         );
         setRepositories(response.data);
-      } catch (error) {
-        setError("Failed to fetch repositories");
+        setError(null);
+      } catch (error: any) {
+        if (error.response && error.response.status === 404) {
+          // Usuário não encontrado, seta os repositórios como vazio
+          setRepositories([]);
+          setError("Usuário do GitHub não encontrado."); // Define uma mensagem de erro apropriada
+        } else {
+          setError("Falha ao buscar repositórios"); // Outro tipo de erro
+        }
       } finally {
         setLoading(false);
       }
