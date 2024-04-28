@@ -1,10 +1,11 @@
 # Lista de Repositórios do Usuário GitHub
 
-Este é um projeto de aplicativo web desenvolvido em React TypeScript que permite aos usuários fazer login com sua conta GitHub e listar todos os seus repositórios.
+Este é um projeto de aplicativo web desenvolvido em React TypeScript que permite aos usuários fazer login com sua conta GitHub e listar todos os seus repositórios com layout inspirado no Orkut.
 
 ## Funcionalidades
 
-- Login com conta GitHub.
+- Cadastro.
+- Login passando usuário GitHub.
 - Exibição de todos os repositórios do usuário.
 - Paginação para navegar pelos repositórios.
 
