@@ -11,7 +11,7 @@ interface InputProps {
 export default function Input(props: InputProps) {
   return (
     <input
-      className={`w-[209px] h-[32px] rounded-lg text-zinc-400 text-sm border border-zinc-400 p-4 ${props.className}`}
+      className={`w-44 h-8 rounded-lg text-zinc-400 text-sm border border-zinc-400 p-4 ${props.className}`}
       type={props.type}
       placeholder={props.placeholder}
       id={props.id}

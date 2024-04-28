@@ -69,12 +69,12 @@ export default function Login() {
   
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen gap-4">
-      <div className="flex w-5/6 h-[368px] gap-4 ml-11">
+    <main className="flex flex-col items-center justify-center min-h-screen w-full gap-4">
+      <div className="flex w-5/6 gap-4 max-sm:flex-col max-sm:ml-0 max-sm:gap-2">
         <Apresentacao />
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col justify-start items-center w-1/3 h-full bg-[#F1F9FE] rounded-lg"
+          className="flex flex-col items-center w-1/3 h-[320px] bg-[#F1F9FE] rounded-lg gap-1 max-sm:w-full"
         >
           <p className="text-sm text-center mt-6 mb-2">
             Acesse o <b>login</b>
@@ -107,7 +107,7 @@ export default function Login() {
               placeholder="Usuário Github"
             />
           </div>
-          <a className="text-[#2E7BB4] text-xs mr-24" href="/">
+          <a className="text-[#2E7BB4] text-xs" href="/">
             Não tem cadastro?
           </a>
           <ButtonLogin text="Login" className="mb-11 mt-8" />

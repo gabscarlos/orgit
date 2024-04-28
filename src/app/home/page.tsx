@@ -71,25 +71,25 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center w-full">
       <Header clearUsername={clearUsername} />
-      <div className="flex gap-2 mt-8">
-        <nav className="flex flex-col w-1/6 bg-white rounded-xl gap-4 p-2">
+      <div className="flex gap-2 w-full mt-8 justify-center max-sm:flex-col">
+        <nav className="flex flex-col w-1/6 bg-white rounded-xl gap-4 p-2 max-sm:w-full max-sm:items-center">
           <Image
-            className="ml-9 mt-9 w-[150px] rounded-full"
+            className="w-[150px] rounded-full"
             src={`https://github.com/${username}.png`}
             width={100}
             height={100}
             alt="people"
           />
-          <div className="bg-[#ECF2FA] h-1"></div>
+          <div className="bg-[#ECF2FA] h-1 max-sm:w-full"></div>
           <div>
-            <h2 className="text-left text-[#2E7BB4] text-xl font-bold p-1">
+            <h2 className="text-left text-[#2E7BB4] text-xl font-bold p-1 max-sm:text-center">
               {username}
             </h2>
             <h3 className="text-zinc-400 text-lg p-1 -mt-2">
               Front-end Developer
             </h3>
           </div>
-          <div className="bg-[#ECF2FA] h-1"></div>
+          <div className="bg-[#ECF2FA] h-1 max-sm:w-full"></div>
           <div className="flex items-start p-1">
             <Image
               className="w-5"
@@ -154,7 +154,7 @@ export default function Home() {
               @{username}
             </a>
           </div>
-          <div className="bg-[#ECF2FA] h-1"></div>
+          <div className="bg-[#ECF2FA] h-1 max-sm:w-full"></div>
           <h2 className="text-left font-bold text-xl text-zinc-400 p-1">
             Organizações
           </h2>
@@ -183,11 +183,11 @@ export default function Home() {
             </a>
           </div>
         </nav>
-        <main className="flex flex-col gap-5">
+        <main className="flex flex-col w-1/2 gap-5 max-sm:w-full">
           <div className="flex flex-col bg-white rounded-xl p-7 gap-5">
-            <h1 className="text-4xl">Bem-vindo(a), {username}</h1>
+            <h1 className="text-4xl max-sm:text-center">Bem-vindo(a), {username}</h1>
             <SorteDoDia />
-            <div className="flex gap-5">
+            <div className="flex flex-wrap gap-5 max-sm:justify-center">
               <div className="flex flex-col w-20 items-center">
                 <span className="text-xs italic">Repositórios</span>
                 <div className="flex gap-2">
@@ -243,8 +243,8 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col bg-white rounded-xl p-7 gap-5">
-            <h2 className="text-2xl">O que você deseja fazer?</h2>
-            <div className="flex gap-3">
+            <h2 className="text-2xl max-sm:text-center">O que você deseja fazer?</h2>
+            <div className="flex flex-wrap justify-center gap-3">
               <ButtonHome text="Criar Repositório" />
               <ButtonHome text="Importar Repositório" />
               <ButtonHome text="Novo Gist" />
@@ -253,17 +253,17 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col bg-white rounded-xl p-7 gap-5">
-            <h2 className="text-2xl">Meus repositórios:</h2>
+            <h2 className="text-2xl max-sm:text-center">Meus repositórios:</h2>
             <UserRepositories username={username} />
           </div>
         </main>
-        <aside className="flex flex-col gap-2">
-          <div className="flex flex-col w-96 bg-white p-5 rounded-xl gap-3">
+        <aside className="flex flex-col w-1/4 gap-2 max-sm:w-full">
+          <div className="flex flex-col w-full bg-white p-5 rounded-xl gap-3">
             <h2 className="text-xl font-bold">
               Seguindo <span className="text-[#2E7BB4]">(216)</span>
             </h2>
             <div>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap justify-center gap-4">
                 <div className="relative">
                   <p className="absolute bottom-0 left-0 text-white text-xs text-left ml-2">
                     Towney Cartmae
@@ -342,12 +342,12 @@ export default function Home() {
             <h2 className="text-lg font-bold text-[#2E7BB4]">Ver todos</h2>
           </div>
 
-          <div className="flex flex-col w-96 bg-white p-5 rounded-xl gap-4">
+          <div className="flex flex-col w-full bg-white p-5 rounded-xl gap-4">
             <h2 className="text-xl font-bold">
               Seguidores <span className="text-[#2E7BB4]">(1.1k)</span>
             </h2>
             <div>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap justify-center gap-4">
                 <div className="relative">
                   <p className="absolute bottom-0 left-0 text-white text-xs text-left ml-2">
                     Shaun Pullan

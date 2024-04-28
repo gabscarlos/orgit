@@ -38,7 +38,7 @@ export default function SorteDoDia() {
 
   return (
     <div>
-      <p className='text-zinc-500'><b>Sorte de hoje</b>: {mensagem}</p>
+      <p className='text-zinc-500 max-sm:text-center'><b>Sorte de hoje</b>: {mensagem}</p>
     </div>
   );
 }

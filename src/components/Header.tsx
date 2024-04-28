@@ -14,8 +14,8 @@ export default function Header({ clearUsername }: HeaderProps) {
   }  
 
   return (
-    <header className="flex justify-evenly w-full bg-[#5C9ECF] p-2">
-      <div className="flex items-center gap-4">
+    <header className="flex justify-evenly w-full bg-[#5C9ECF] p-2 max-sm:flex-col max-sm:items-center max-sm:p-1">
+      <div className="flex items-center gap-4 max-sm:flex-wrap max-sm:gap-2 max-sm:justify-evenly">
         <span className="text-pink-500 text-xl font-bold bg-white rounded-full p-1 px-5 mr-4">
           orgit
         </span>
@@ -48,7 +48,7 @@ export default function Header({ clearUsername }: HeaderProps) {
         <button onClick={handleLogout} className="text-white text-sm">
           Sair
         </button>
-        <div className="relative">
+        <div className="relative max-lg:hidden">
           <IconSearch
             color="white"
             className="absolute left-3 top-1/2 transform -translate-y-1/2"

@@ -89,7 +89,7 @@ export default function UserRepositories(props: UserRepositoriesProps) {
                   </div>
                   <p className="text-sm text-zinc-400">Repositório</p>
                 </div>
-                <button className="flex items-center text-white bg-[#6F92BB] rounded-xl px-8 gap-4">
+                <button className="flex items-center text-white bg-[#6F92BB] rounded-xl p-4">
                   <IconStarFilled className="text-yellow-400" size={20} />
                   Star
                 </button>

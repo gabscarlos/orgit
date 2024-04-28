@@ -33,41 +33,43 @@ export default function Cadastro() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    if (typeof window !== 'undefined') {
+
+    if (typeof window !== "undefined") {
       if (!validarEmail(formData.email)) {
         setIsEmailValido(false);
         return;
       } else {
         setIsEmailValido(true);
       }
-  
+
       if (formData.senha !== formData.confirmaSenha) {
         alert("As senhas não conferem");
         return;
       }
-  
+
       // Verificar se já existem dados cadastrados
       const cadastroDataString = localStorage.getItem("cadastroData");
-      const cadastroData: FormData[] = cadastroDataString ? JSON.parse(cadastroDataString) : [];
-  
+      const cadastroData: FormData[] = cadastroDataString
+        ? JSON.parse(cadastroDataString)
+        : [];
+
       // Verificar se o email já está cadastrado
-      const emailJaCadastrado = Array.isArray(cadastroData) && cadastroData.some(
-        (user) => user.email === formData.email
-      );
+      const emailJaCadastrado =
+        Array.isArray(cadastroData) &&
+        cadastroData.some((user) => user.email === formData.email);
       if (emailJaCadastrado) {
         setErro("Este email já está cadastrado. Por favor, utilize outro.");
         return;
       }
-  
+
       // Adicionar novo usuário à lista de cadastros
       cadastroData.push(formData);
-  
+
       // Salvar lista atualizada no localStorage
       localStorage.setItem("cadastroData", JSON.stringify(cadastroData));
-  
+
       router.push("/login");
-  
+
       setFormData({
         nome: "",
         email: "",
@@ -80,7 +82,6 @@ export default function Cadastro() {
       console.error("localStorage is not available");
     }
   };
-  
 
   function validarEmail(email: string): boolean {
     const regexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -88,12 +89,12 @@ export default function Cadastro() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen gap-4">
-      <div className="flex w-5/6 h-[368px] gap-4 ml-11">
+    <main className="flex flex-col items-center justify-center min-h-screen w-full gap-4">
+      <div className="flex w-5/6 gap-4 max-sm:flex-col max-sm:ml-0 max-sm:gap-2">
         <Apresentacao />
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col justify-between items-center w-1/3 h-full bg-[#F1F9FE] rounded-lg"
+          className="flex flex-col items-center w-1/3 h-[320px] bg-[#F1F9FE] rounded-lg gap-1 max-sm:w-full"
         >
           <p className="text-sm text-center mt-6">
             Faça o <b>cadastro</b>
@@ -108,10 +109,10 @@ export default function Cadastro() {
               onChange={handleChange}
               placeholder="Digite seu email"
               className={` 
-              ${isEmailValido ? "border-gray-300" : "border-red-500"}
-              ${isEmailValido ? "text-black" : "text-red-500"}
-              ${isEmailValido ? "bg-white" : "bg-red-100"}
-              `}
+          ${isEmailValido ? "border-gray-300" : "border-red-500"}
+          ${isEmailValido ? "text-black" : "text-red-500"}
+          ${isEmailValido ? "bg-white" : "bg-red-100"}
+          `}
             />
             <Input
               type="password"
@@ -128,15 +129,17 @@ export default function Cadastro() {
               value={formData.confirmaSenha}
               onChange={handleChange}
               placeholder="Repita sua senha"
-            />            
+            />
           </div>
-          <ButtonLogin type="submit" text="Cadastrar" className="mb-11" />
+          <ButtonLogin type="submit" text="Cadastrar" className="mb-5" />
           <p className="text-xs text-[#5292C1]">
             Já tem cadastro? <a href="/login">Login</a>
           </p>
         </form>
       </div>
-      <Rodape />
+      <div className="flex w-5/6">
+        <Rodape />
+      </div>
     </main>
   );
 }
